@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gait Happens — Parallax / Color-Change Section Prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ============ Help topics + featured hero card (Figma 2561:31876) ============ -->
+  <section class="help-section">
+    <div class="help-section__inner">
+      <div class="help-list">
+        <p class="help-list__label">What can we help you with:</p>
+        <div class="help-list__row">
+          <svg class="help-list__arrow" aria-hidden="true" width="16" height="14" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <path d="M1 8H17M10 15L17 8L10 1" stroke="#fec745" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <ul class="help-list__items">
+            <li class="help-list__item help-list__item--active">Pain Relief</li>
+            <li class="help-list__item">Performance</li>
+            <li class="help-list__item">Injury</li>
+            <li class="help-list__item">Everyday Comfort</li>
+            <li class="help-list__item">Education</li>
+          </ul>
+        </div>
+      </div>
+      <div class="help-feature">
+        <div class="help-feature__photo help-feature__photo--wide">
+          <img src="assets/help-photo-clinicians.jpg" alt="" />
+        </div>
+        <div class="help-feature__side">
+          <div class="help-feature__photo help-feature__photo--tall">
+            <img src="assets/help-photo-toe-spacer.jpg" alt="" />
+          </div>
+          <div class="help-feature__copy">
+            <p class="help-feature__text">Move with greater comfort and confidence through expert gait analysis, personalized education, and tools designed to help you feel and function your best.</p>
+            <div class="help-feature__buttons">
+              <button class="btn btn--gold" type="button">Toe Spacers</button>
+              <button class="btn btn--white" type="button">All Products</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THE PROTOTYPE SECTION ============ -->
+  <section class="transition-section" id="transition-section">
+    <div class="transition-section__inner">
+
+      <div class="content-block">
+        <h2 class="heading">We&rsquo;re a female-led group of clinicians out to change the world one human sole at a time.</h2>
+        <button class="btn-about" type="button">
+          <span>About Us</span>
+          <img class="btn-about__icon" src="assets/arrow-icon.svg" alt="" />
+        </button>
+      </div>
+
+      <div class="parallax-img parallax-img--portrait" aria-hidden="true">
+        <img src="assets/hero-portrait.png" alt="" />
+      </div>
+
+      <div class="quote-block">
+        <p class="quote-text">&ldquo;Without Gait Happens, I know I would not be where I am today. Now I am back to doing what I love. For that, I am eternally grateful. I highly recommend Gait Happens to athletes who are dealing with consistent injuries.&rdquo;</p>
+        <div class="quote-attribution">
+          <span class="quote-name">Nicole Lemal-Stefanovich</span>
+          <span class="quote-label">Boston Marathon Competitor</span>
+        </div>
+      </div>
+
+      <div class="parallax-img parallax-img--runners" aria-hidden="true">
+        <img src="assets/hero-runners.jpg" alt="" />
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ Product Cards (Figma 2301:31690) ============ -->
+  <section class="products-section">
+    <div class="products-section__inner">
+      <h3 class="products-section__heading">Tools To Put Your Best Foot Forward</h3>
+      <div class="products-section__row">
+        <article class="product-card">
+          <div class="product-card__photo"><img src="assets/product-card-photo.png" alt="" /></div>
+          <div class="product-card__footer">
+            <span>Combating Bunions</span>
+            <img class="icon-arrow" src="assets/arrow-icon.svg" alt="" />
+          </div>
+        </article>
+        <article class="product-card">
+          <div class="product-card__photo"><img src="assets/product-card-photo.png" alt="" /></div>
+          <div class="product-card__footer">
+            <span>Fit Feet Course</span>
+            <img class="icon-arrow" src="assets/arrow-icon.svg" alt="" />
+          </div>
+        </article>
+        <article class="product-card">
+          <div class="product-card__photo"><img src="assets/product-card-photo.png" alt="" /></div>
+          <div class="product-card__footer">
+            <span>Fit Feet Course</span>
+            <img class="icon-arrow" src="assets/arrow-icon.svg" alt="" />
+          </div>
+        </article>
+        <div class="nav-cards">
+          <a class="nav-card" href="#">
+            <span>Shop All Products</span>
+            <img class="nav-card__arrow" src="assets/nav-card-arrow.svg" alt="" />
+          </a>
+          <a class="nav-card" href="#">
+            <span>Shop All Courses</span>
+            <img class="nav-card__arrow" src="assets/nav-card-arrow.svg" alt="" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Footer (Figma 2874:38700) ============ -->
+  <footer class="site-footer">
+    <div class="site-footer__top">
+      <div class="site-footer__brand">
+        <div class="site-footer__logo">
+          <img src="assets/logo-mark.svg" alt="" class="site-footer__logo-mark" />
+          <img src="assets/logo-text-gait.svg" alt="" class="site-footer__logo-gait" />
+          <img src="assets/logo-text-happens.svg" alt="Gait Happens" class="site-footer__logo-happens" />
+        </div>
+        <div class="site-footer__social">
+          <img src="assets/icon-instagram.svg" alt="Instagram" />
+          <img src="assets/icon-youtube.svg" alt="YouTube" />
+        </div>
+      </div>
+      <nav class="site-footer__links">
+        <ul>
+          <li>Home</li>
+          <li>Become an Affiliate</li>
+          <li>Apply for Wholesale</li>
+        </ul>
+        <ul>
+          <li>Medical Disclaimer</li>
+          <li>Terms &amp; Conditions</li>
+          <li>Privacy Policy</li>
+        </ul>
+        <ul>
+          <li>Contact</li>
+          <li>Returns and Exchanges</li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="site-footer__newsletter">
+      <img class="site-footer__divider" src="assets/footer-divider.svg" alt="" />
+      <p class="site-footer__newsletter-heading">Stay in the loop for all Gait Happens news, research, and events.</p>
+
+      <div class="footer-form">
+        <div class="footer-form__row">
+          <label class="footer-field">
+            <span>First name*</span>
+            <input type="text" placeholder="James" />
+          </label>
+          <label class="footer-field">
+            <span>Last Name*</span>
+            <input type="text" placeholder="Bond" />
+          </label>
+          <label class="footer-field footer-field--grow">
+            <span>Email*</span>
+            <input type="email" placeholder="you@example.com" />
+          </label>
+          <label class="footer-field footer-field--grow">
+            <span>Phone</span>
+            <input type="tel" placeholder="you@example.com" />
+          </label>
+        </div>
+
+        <div class="footer-form__row footer-form__row--bottom">
+          <div class="footer-form__selects">
+            <label class="footer-field footer-field--select">
+              <span>Are you a health professional or clinician?*</span>
+              <span class="footer-select">
+                <span>Yes</span>
+                <img class="footer-select__chevron" src="assets/arrow-icon.svg" alt="" />
+              </span>
+            </label>
+            <label class="footer-field footer-field--select">
+              <span>Region*</span>
+              <span class="footer-select">
+                <span>North America</span>
+                <img class="footer-select__chevron" src="assets/arrow-icon.svg" alt="" />
+              </span>
+            </label>
+          </div>
+          <div class="footer-form__submit">
+            <span class="footer-form__submit-note">No Spam, Just Gait Goodness</span>
+            <button class="btn btn--gold" type="button">
+              <span>Submit</span>
+              <img class="icon-arrow icon-arrow--dark" src="assets/arrow-icon.svg" alt="" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="progress-meter" id="progress-meter" aria-hidden="true">
+    <span id="progress-value">0%</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

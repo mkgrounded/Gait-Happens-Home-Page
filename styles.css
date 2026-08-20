@@ -1,0 +1,574 @@
+:root {
+  --color-blue: #047791;
+  --color-black: #231f20;
+  --color-white: #ffffff;
+  --color-gold: #fec745;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  /* driven by script.js as a snap-to-state toggle — the whole page canvas
+     transitions as one piece, not just the prototype section's box */
+  background-color: var(--page-bg, var(--color-blue));
+  transition: background-color 500ms ease;
+}
+
+/* ---------- shared button + icon utilities ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  cursor: pointer;
+  padding: 12px 24px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  white-space: nowrap;
+}
+.btn--gold { background-color: var(--color-gold); color: var(--color-black); }
+.btn--white { background-color: var(--color-white); color: var(--color-blue); }
+
+.icon-arrow { width: 16px; height: 14px; }
+/* arrow-icon.svg is authored white; invert to read as dark on light/gold buttons */
+.icon-arrow--dark { filter: invert(1); }
+
+/* ---------- the prototype section ---------- */
+/* vertical rhythm matches the Figma frame (2838:9575, 1200x1052) exactly —
+   the frame's own top/bottom breathing room is baked into the element
+   offsets below, so the section itself adds no extra padding */
+.transition-section {
+  position: relative;
+  /* no overflow:clip here — the parallax images are meant to drift freely
+     as they translate, not be masked by the section's own edges. isolate
+     contains that positioned drift to its own stacking context so it can
+     never paint on top of the Product Cards section that follows. */
+  isolation: isolate;
+  padding: 60px 0 120px;
+}
+
+.transition-section__inner {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 1052px;
+  padding: 0;
+}
+
+/* heading + button */
+.content-block {
+  position: absolute;
+  left: 64px;
+  top: 235px;
+  width: min(735px, calc(100% - 128px));
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 48px;
+}
+
+.heading {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: clamp(32px, 4.5vw, 60px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--heading-color, var(--color-black));
+  transition: color 500ms ease;
+}
+
+.btn-about {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  cursor: pointer;
+  padding: 12px 24px;
+  background-color: var(--btn-bg, var(--color-black));
+  color: var(--color-white);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  transition: background-color 500ms ease;
+}
+
+.btn-about__icon {
+  width: 16px;
+  height: 14px;
+  /* icon is authored dark; force it white so it stays legible on both button states */
+  filter: brightness(0) invert(1);
+}
+
+/* portrait parallax image, top right — the whole box (not a cropped
+   window onto an oversized image) is what gets translated in script.js,
+   so the image visibly moves rather than panning inside a fixed mask */
+.parallax-img {
+  position: absolute;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.parallax-img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.parallax-img--portrait {
+  right: 89px;
+  top: 115px;
+  width: clamp(140px, 18vw, 217px);
+  height: clamp(164px, 21vw, 254px);
+}
+
+.parallax-img--runners {
+  left: 139px;
+  top: 692px;
+  width: clamp(150px, 18vw, 220px);
+  height: clamp(167px, 20vw, 245px);
+}
+
+/* quote block */
+.quote-block {
+  position: absolute;
+  right: 148px;
+  top: 630px;
+  width: min(515px, calc(100% - 64px));
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.quote-text {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: clamp(18px, 2vw, 24px);
+  line-height: 1.35;
+  color: var(--body-color, var(--color-black));
+  transition: color 500ms ease;
+}
+
+.quote-attribution {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.quote-name {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  color: var(--name-color, var(--color-black));
+  transition: color 500ms ease;
+}
+
+.quote-label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--label-color, var(--color-black));
+  transition: color 500ms ease;
+}
+
+/* ---------- help topics + featured hero card (section above; Figma 2561:31876) ---------- */
+.help-section {
+  /* no background-color of its own — it shows the shared, scroll-driven
+     html/body background (see --page-bg) so the color swap reads as one
+     continuous surface instead of two independently-painted blue blocks
+     meeting at a seam */
+  padding: 48px;
+}
+
+.help-section__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 64px;
+}
+
+.help-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 335px;
+  flex-shrink: 0;
+}
+
+.help-list__label {
+  margin: 0;
+  color: var(--color-white);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.help-list__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.help-list__arrow {
+  display: block;
+  flex-shrink: 0;
+  margin-top: 9px;
+}
+
+.help-list__items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.help-list__item {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 32px;
+  color: var(--color-white);
+}
+
+.help-list__item--active { color: var(--color-gold); }
+
+.help-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  flex: 1;
+  height: 493px;
+  min-width: 0;
+}
+
+.help-feature__photo { overflow: hidden; }
+.help-feature__photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.help-feature__photo--wide {
+  flex: 1;
+  height: 100%;
+  min-width: 0;
+}
+
+.help-feature__side {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 366px;
+  flex-shrink: 0;
+  height: 100%;
+}
+
+.help-feature__photo--tall {
+  flex: 1;
+  min-height: 0;
+}
+
+.help-feature__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.help-feature__text {
+  margin: 0;
+  color: var(--color-white);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.help-feature__buttons { display: flex; gap: 12px; }
+
+/* ---------- Product Cards (section below; Figma 2301:31690) ---------- */
+.products-section {
+  /* no background-color of its own — it shows the shared, scroll-driven
+     html/body background, same as .help-section above; script.js flips
+     --page-bg to gold once this section crosses the same viewport-center
+     threshold used for the blue-to-black swap, so both transitions read
+     as one continuous mechanism */
+  padding: 48px 48px 108px;
+}
+
+.products-section__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.products-section__heading {
+  margin: 0;
+  color: var(--products-heading-color, var(--color-blue));
+  transition: color 500ms ease;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 1;
+}
+
+.products-section__row {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  height: 291px;
+}
+
+.product-card {
+  background-color: var(--color-white);
+  overflow: hidden;
+  width: 252px;
+  height: 100%;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card__photo { flex: 1; min-height: 0; }
+.product-card__photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-card__footer {
+  background-color: var(--color-blue);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 16px 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.nav-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  height: 100%;
+  min-width: 0;
+}
+
+.nav-card {
+  background-color: var(--color-blue);
+  color: var(--color-white);
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 16px;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.nav-card__arrow { width: 24px; height: 24px; }
+
+/* ---------- Footer (Figma 2874:38700) ---------- */
+.site-footer {
+  background-color: var(--color-blue);
+  padding: 29px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 96px;
+}
+
+.site-footer__top {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.site-footer__brand {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 396px;
+}
+
+.site-footer__logo { display: flex; align-items: center; height: 27px; }
+.site-footer__logo img { display: block; height: 100%; width: auto; }
+.site-footer__logo-mark { margin-right: 8px; }
+
+.site-footer__social { display: flex; align-items: center; gap: 18px; }
+.site-footer__social img { width: 32px; height: 32px; }
+
+.site-footer__links { display: flex; gap: 38px; flex-wrap: wrap; }
+.site-footer__links ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 21px;
+  width: 166px;
+}
+.site-footer__links li {
+  color: var(--color-white);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.site-footer__newsletter {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.site-footer__divider { display: block; width: 100%; height: 1px; }
+
+.site-footer__newsletter-heading {
+  margin: 0;
+  color: var(--color-white);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  max-width: 537px;
+}
+
+.footer-form { display: flex; flex-direction: column; gap: 16px; }
+.footer-form__row { display: flex; gap: 16px; align-items: flex-end; flex-wrap: wrap; }
+.footer-form__row--bottom { justify-content: space-between; }
+.footer-form__selects { display: flex; gap: 16px; align-items: flex-end; flex-wrap: wrap; }
+.footer-form__submit { display: flex; flex-direction: column; gap: 11px; align-items: flex-start; }
+.footer-form__submit-note {
+  color: var(--color-white);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.footer-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1 0 0;
+  min-width: 150px;
+  max-width: 350px;
+}
+.footer-field > span:first-child {
+  color: var(--color-white);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.footer-field input {
+  background-color: var(--color-white);
+  border: 1px solid #c7c3c4;
+  padding: 12px 16px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  color: #837e7f;
+  width: 100%;
+}
+.footer-field--grow { max-width: 320px; }
+.footer-field--select { flex: none; width: 320px; }
+
+.footer-select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background-color: var(--color-white);
+  border: 1px solid #c7c3c4;
+  padding: 12px 16px;
+  color: #837e7f;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+}
+.footer-select__chevron {
+  width: 14px;
+  height: 14px;
+  transform: rotate(90deg);
+  filter: brightness(0) invert(55%);
+}
+
+/* ---------- dev progress meter (remove before shipping) ---------- */
+.progress-meter {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  font-family: monospace;
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  z-index: 999;
+  pointer-events: none;
+}
+
+/* ---------- small screens: stack instead of absolute-position ---------- */
+@media (max-width: 860px) {
+  .transition-section__inner {
+    min-height: 0;
+    padding: 0 24px;
+  }
+  .content-block,
+  .parallax-img,
+  .quote-block {
+    position: static;
+    width: 100%;
+  }
+  .parallax-img--portrait,
+  .parallax-img--runners {
+    height: 220px;
+    margin: 32px 0;
+  }
+  .quote-block { margin-top: 32px; }
+
+  .help-section__inner { flex-direction: column; gap: 32px; }
+  .help-list { width: 100%; }
+  .help-feature { flex-direction: column; height: auto; }
+  .help-feature__photo--wide { width: 100%; height: 260px; }
+  .help-feature__side { width: 100%; height: auto; }
+  .help-feature__photo--tall { height: 220px; flex: none; }
+
+  .products-section__row { flex-direction: column; height: auto; align-items: stretch; }
+  .product-card { width: 100%; height: 220px; }
+  .nav-cards { flex-direction: row; height: 80px; }
+
+  .site-footer__brand { width: 100%; }
+  .footer-form__row--bottom { flex-direction: column; align-items: stretch; gap: 24px; }
+}
